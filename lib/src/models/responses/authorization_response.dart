@@ -30,7 +30,9 @@ class AuthorizationResponse extends TokenResponse {
         idToken: json["id_token"].toString(),
         refreshToken: json["refresh_token"]?.toString(),
         expiresAt: DateTime.now().add(
-          Duration(seconds: (json['expires_in'] as int?) ?? 0),
+          Duration(
+            seconds: int.tryParse(json['expires_in'].toString()) ?? 0,
+          ),
         ),
         additionalProperties: json,
         state: state,
