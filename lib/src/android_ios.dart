@@ -38,6 +38,11 @@ class OpenIdConnectAndroidiOS {
                         Navigator.pop(dialogContext, url);
                       }
                     },
+                    onWebResourceError: (WebResourceError error) {
+                      if (Platform.isIOS) {
+                        Navigator.pop(dialogContext, error.url);
+                      }
+                    },
                   ),
                 )
                 ..loadRequest(Uri.parse(authorizationUrl)),
